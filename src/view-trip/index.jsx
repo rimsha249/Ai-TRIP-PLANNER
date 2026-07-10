@@ -74,7 +74,13 @@ function ViewTrip() {
         <h2 className='font-bold text-2xl mb-4'>🏨 Hotel Recommendations</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
           {tripData?.hotels?.map((hotel, i) => (
-            <div key={i} className='border rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden'>
+            <a
+              key={i}
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hotel.hotelName + ' ' + hotel.address)}`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='border rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden block cursor-pointer'
+            >
               <img
                 src={hotelImages[hotel.hotelName] || 'https://placehold.co/400x200?text=Loading...'}
                 alt={hotel.hotelName}
@@ -87,7 +93,7 @@ function ViewTrip() {
                 <p className='text-yellow-500 mt-1'>⭐ {hotel.rating}</p>
                 <p className='text-gray-600 text-sm mt-2'>{hotel.description}</p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -102,7 +108,13 @@ function ViewTrip() {
             </h3>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
               {places?.map((place, i) => (
-                <div key={i} className='border rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden'>
+                <a
+                  key={i}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.placeName + ' ' + formData.location)}`}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='border rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden block cursor-pointer'
+                >
                   <img
                     src={placeImages[place.placeName] || 'https://placehold.co/400x200?text=Loading...'}
                     alt={place.placeName}
@@ -114,7 +126,7 @@ function ViewTrip() {
                     <p className='text-green-600 mt-1 text-sm'>🎟️ {place.ticketPrice}</p>
                     <p className='text-gray-500 text-sm'>⏰ {place.timeToVisit}</p>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>

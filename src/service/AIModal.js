@@ -20,7 +20,9 @@ const generateAITrip = async (formData) => {
 
   const data = await response.json();
   const text = data.choices[0].message.content;
-  const clean = text.replace(/```json|```/g, '').trim();
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+  const clean = text.slice(start, end + 1);
   return JSON.parse(clean);
 };
 
